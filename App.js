@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Text, View } from 'react-native';
-import { AppLoading, Font } from 'expo';
+import { AppLoading, Font, Asset } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 
 export default function App() {
@@ -10,6 +10,7 @@ export default function App() {
       await Font.loadAsync({
         ...Ionicons.font
       });
+      await Asset.loadAsync([require("./assets/logo.png")]);
       setLoaded(true)
     } catch (e) {
       console.log(e);
