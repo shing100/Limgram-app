@@ -15,9 +15,15 @@ Screens:
 
 ## 참고
 
-expo doc
+### expo doc
 > https://docs.expo.io/versions/v35.0.0/sdk/
 
-expo vector-icons
+### expo vector-icons
 > https://github.com/expo/vector-icons
 > https://expo.github.io/vector-icons/
+
+
+### apollo-cache
+> https://github.com/apollographql/apollo-client/tree/master/packages/apollo-cache-inmemory
+> https://github.com/apollographql/apollo-cache-persist
+
