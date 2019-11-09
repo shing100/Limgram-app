@@ -41,9 +41,11 @@ export default function App() {
   
   return loaded && client ? (
     <ApolloProvider client={client}>
+
       <View>
         <Text> Open up App.js to start working on your app! </Text> 
       </View>
+      
     </ApolloProvider> 
   ) : (
     <AppLoading />
