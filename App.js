@@ -15,6 +15,7 @@ import styles from './styles';
 export default function App() {
   const [loaded, setLoaded] = useState(false);
   const [client, setClient] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(null); // 로그인 했는지 안했는지 모르기 때문에
 
   const preLoad = async() => {
     try {
@@ -33,6 +34,13 @@ export default function App() {
         ...apolloClientOptions
       });
 
+      const isLoggedIn = await AsyncStorage.getItem("isLoggedIn");
+      if (isLoggedIn === null || isLoggedIn === false) {
+        setIsLoggedIn(false);
+      } else {
+        setIsLoggedIn(true);
+      }
+
       setLoaded(true);
       setClient(client);
     } catch (e) {
@@ -43,11 +51,11 @@ export default function App() {
     preLoad()
   }, [])
   
-  return loaded && client ? (
+  return loaded && client && isLoggedIn !== null ? (
     <ApolloProvider client={client}>
       <ThemeProvider theme={styles}>
         <View>
-          <Text> Open up App.js to start working on your app! </Text> 
+          {isLoggedIn === true ? <Text>I'm In</Text> : <Text>I'm Out</Text>} 
         </View>
       </ThemeProvider>
     </ApolloProvider> 
