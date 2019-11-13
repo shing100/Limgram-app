@@ -28,3 +28,4 @@ Screens:
 > https://github.com/apollographql/apollo-cache-persist
 
 ### expo-asset expo-font
+> expo install expo-font
