@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, AsyncStorage } from 'react-native';
+import { Text, View, AsyncStorage, TouchableOpacity } from 'react-native';
 import { AppLoading } from 'expo';
 import { Asset } from "expo-asset";
 import * as Font from "expo-font";
@@ -35,7 +35,7 @@ export default function App() {
       });
 
       const isLoggedIn = await AsyncStorage.getItem("isLoggedIn");
-      if (isLoggedIn === null || isLoggedIn === false) {
+      if (isLoggedIn === null || isLoggedIn === "false") {
         setIsLoggedIn(false);
       } else {
         setIsLoggedIn(true);
@@ -50,12 +50,38 @@ export default function App() {
   useEffect(() => {
     preLoad()
   }, [])
+
+  const logUserIn = async () => {
+    try {
+      await AsyncStorage.setItem("isLoggedIn", "true");
+      setIsLoggedIn(true)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const logUserOut = async () => {
+    try {
+      await AsyncStorage.setItem("isLoggedIn", "false");
+      setIsLoggedIn(false)
+    } catch (error) {
+      console.log(error);
+    }
+  }
   
   return loaded && client && isLoggedIn !== null ? (
     <ApolloProvider client={client}>
       <ThemeProvider theme={styles}>
-        <View>
-          {isLoggedIn === true ? <Text>I'm In</Text> : <Text>I'm Out</Text>} 
+        <View style={{flex:1, justifyContent:"center", alignItems:"center"}}>
+          {isLoggedIn === true ? 
+            <TouchableOpacity onPress={logUserOut}>
+              <Text>Log Out</Text>
+            </TouchableOpacity>
+          : 
+            <TouchableOpacity onPress={logUserIn}>
+              <Text>Log In</Text>
+            </TouchableOpacity>
+          } 
         </View>
       </ThemeProvider>
     </ApolloProvider> 
