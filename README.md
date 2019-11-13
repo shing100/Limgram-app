@@ -27,3 +27,4 @@ Screens:
 > https://github.com/apollographql/apollo-client/tree/master/packages/apollo-cache-inmemory
 > https://github.com/apollographql/apollo-cache-persist
 
+### expo-asset expo-font
