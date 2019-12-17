@@ -36,12 +36,16 @@ const LoginLinkText = styled.Text`
 
 export default ({ navigation }) => (
   <View>
-    <Text>Auth Home</Text>
-    <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-      <Text>Go to Login</Text>
-    </TouchableOpacity>
-    <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
-      <Text>Go to Signup</Text>
-    </TouchableOpacity>
+    <Image resizeMode={"contain"} source={require("../../assets/logo.png")} />
+    <Touchable onPress={() => navigation.navigate("Signup")}>
+      <SignUpBtn>
+        <SignUpBtnText>Create New Account</SignUpBtnText>
+      </SignUpBtn>
+    </Touchable>
+    <Touchable onPress={() => navigation.navigate("Login")}>
+      <LoginLink>
+        <LoginLinkText>Log in</LoginLinkText>
+      </LoginLink>
+    </Touchable>
   </View>
 );
